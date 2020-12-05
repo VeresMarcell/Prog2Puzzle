@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainMenu(object):
     def setupUi(self, MainMenu):
         MainMenu.setObjectName("MainMenu")
-        MainMenu.resize(800, 600)
+        MainMenu.resize(990, 733)
         self.centralwidget = QtWidgets.QWidget(MainMenu)
         self.centralwidget.setObjectName("centralwidget")
         self.NgBtn = QtWidgets.QPushButton(self.centralwidget)
@@ -27,14 +27,18 @@ class Ui_MainMenu(object):
         self.DiffBox.setGeometry(QtCore.QRect(10, 220, 151, 31))
         self.DiffBox.setObjectName("DiffBox")
         self.imgPathLineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.imgPathLineEdit.setGeometry(QtCore.QRect(10, 170, 271, 21))
+        self.imgPathLineEdit.setGeometry(QtCore.QRect(10, 170, 221, 21))
         self.imgPathLineEdit.setObjectName("imgPathLineEdit")
         self.imgView = QtWidgets.QGraphicsView(self.centralwidget)
-        self.imgView.setGeometry(QtCore.QRect(310, 10, 471, 551))
+        self.imgView.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.imgView.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.imgView.setFixedSize(630, 630)
+        self.imgView.setGeometry(QtCore.QRect(320, 20, 630, 630))
+        self.imgView.setMouseTracking(True)
         self.imgView.setObjectName("imgView")
         MainMenu.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainMenu)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 20))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 990, 21))
         self.menubar.setObjectName("menubar")
         MainMenu.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainMenu)
@@ -50,3 +54,13 @@ class Ui_MainMenu(object):
         self.NgBtn.setText(_translate("MainMenu", "Start Game"))
         self.ImgBtn.setText(_translate("MainMenu", "Load Image"))
         self.DiffBox.setPlaceholderText(_translate("MainMenu", "Select Difficulty"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainMenu = QtWidgets.QMainWindow()
+    ui = Ui_MainMenu()
+    ui.setupUi(MainMenu)
+    MainMenu.show()
+    sys.exit(app.exec_())
