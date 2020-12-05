@@ -19,11 +19,12 @@ class Controller:
         self.mw.show()
 
     def clickImgBtn(self):
-        dialog = QFileDialog.getOpenFileName()
+        dialog = QFileDialog.getOpenFileName(None, "Open Image", '', "Image Files (*.png *.jpg *.bmp)")
         self.ui.imgPathLineEdit.setText(dialog[0])
         self.ui.imgPathLineEdit.setReadOnly(True)
         pix = QPixmap(dialog[0])
         pix = pix.scaled(630, 630, QtCore.Qt.KeepAspectRatio)
+        pix = pix.copy(0,0,200,200)
         item = QtWidgets.QGraphicsPixmapItem(pix)
         scene = QtWidgets.QGraphicsScene()
         scene.addItem(item)
