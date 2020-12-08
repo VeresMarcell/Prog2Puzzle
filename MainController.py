@@ -27,23 +27,22 @@ class Controller:
         self.ui.imgPathLineEdit.setText(dialog[0])          # Line Edit, amiben láthatjuk a betöltött fotó helyét,
         self.ui.imgPathLineEdit.setReadOnly(True)           # de nem írhatjuk át. Visszajelzés a sikeres betöltésre
         self.imPath = dialog[0]
-        pix = QPixmap(dialog[0])                                # innen a metódus végéig a kép pixmapként való betöltése
-        pix = pix.scaled(630, 630)   # kép át méretezése
-        scene = QtWidgets.QGraphicsScene()
-        self.ui.imgView.setScene(scene)
-        self.ui.imgView.setSceneRect(0, 0, 630, 630)
-        self.ui.imgView.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
-        darabok = Tiles()
-        darabok.createTiles(self.imPath, self.ui.DiffBox.currentText())
-        TilesLs = darabok.getTiles()
-        diff = self.ui.DiffBox.currentText()
+        pix = QPixmap(dialog[0])                            # innen a metódus végéig a kép pixmapként való betöltése
+        pix = pix.scaled(630, 630)                          # kép át méretezése
+        scene = QtWidgets.QGraphicsScene()                  # Kép megjelenítéséhez való Scene és SceneRect inicializálása
+        self.ui.imgView.setScene(scene)                     # -||-
+        self.ui.imgView.setSceneRect(0, 0, 630, 630)        # -||-
+        self.ui.imgView.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)          # Bal fentről való indulás beállítása
+        darabok = Tiles()                                   # Tiles class példányosításával
+        darabok.createTiles(self.imPath, self.ui.DiffBox.currentText()) # Kép négyzetekre vágása a Tiles class segítségével
+        TilesLs = darabok.getTiles()                        # A képrészleteket tartalmazó lista létrehozása
+        diff = self.ui.DiffBox.currentText()                # Nehézségkiválasztó helyzete
 
-
-        x = 0
-        y = 0
-
-        if diff =='Easy':
-            for i in TilesLs:
+        x = 0                                                                             # A kép megjelenítése helyesen,
+        y = 0                                                                             # de már feldarabolva,
+                                                                                          # hogy helyzetüket eltárolva
+        if diff =='Easy':                                                                 # lehessen megoldást eltárolni
+            for i in TilesLs:                                                             # a pozíciók listája alapján
                 item = QtWidgets.QGraphicsPixmapItem(i)
                 scene.addItem(item)
                 item.setPos(x * (pix.size().height()/5), y * (pix.size().width()/5))
@@ -81,14 +80,11 @@ class Controller:
                 if x == 9:
                     break
 
-        # item = QtWidgets.QGraphicsPixmapItem(pix)               # majd a GraphicView GraphicScene-é való állítása
-        # scene.addItem(item)
-        # self.ui.imgView.resize(630,630)       # Ez a parancs feleslegesnek tűnik de félek kitörölni, nehogy elfelejtsem
-        # self.ui.imgView.setScene(scene)
 
-    def clickNgBtn(self):
 
-        pix = QPixmap(self.imPath)
+    def clickNgBtn(self):                                                   # New Game gombhoz tartozó funkciók
+                                                                            # Kép beolvasása és kijelzése mostmár
+        pix = QPixmap(self.imPath)                                          # szétszort darabkákkal, nehézség alapján
         pix = pix.scaled(630, 630)
         scene = QtWidgets.QGraphicsScene()
         self.ui.imgView.setScene(scene)
@@ -139,8 +135,8 @@ class Controller:
                 if x == 9:
                     break
 
-    def clickGiveUpButton(self):
-
+    def clickGiveUpButton(self):                                    # Give up gomb funkciói, eltelt idő kijelzése
+                                                                    # és a kép alaphelyzetbe állítása
         Controller.end = timer()
         Tneeded = Controller.end-Controller.start
         Tneeded = '{time:.2f}'.format(time=Tneeded)
@@ -202,7 +198,7 @@ class Controller:
                     break
 
 
-class Tiles():          # Félkész class amiben valahogy majd meg akarom oldani a kép kockákra vágását
+class Tiles():          # A kép egyenlő négyzetekre való felvágására szolgáló osztály
 
     def __init__(self):
         self.tiles = []
