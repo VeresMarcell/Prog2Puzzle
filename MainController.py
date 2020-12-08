@@ -1,5 +1,4 @@
 import sys
-from PIL import Image
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QFileDialog
 from MainWin import Ui_MainMenu
