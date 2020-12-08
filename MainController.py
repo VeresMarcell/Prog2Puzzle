@@ -22,7 +22,7 @@ class Controller:
         self.ui.imgPathLineEdit.setText(dialog[0])          # Line Edit, amiben láthatjuk a betöltött fotó helyét,
         self.ui.imgPathLineEdit.setReadOnly(True)           # de nem írhatjuk át. Visszajelzés a sikeres betöltésre
         pix = QPixmap(dialog[0])                                # innen a metódus végéig a kép pixmapként való betöltése
-        pix = pix.scaled(630, 630)   # át méretezése
+        pix = pix.scaled(630, 630)   # kép át méretezése
         # pix = pix.copy(0,0,200,200)                             # Ez a sor csak teszt hogy hogyan tudok körbevágni egy képrészt
         item = QtWidgets.QGraphicsPixmapItem(pix)               # majd a GraphicView GraphicScene-é való állítása
         scene = QtWidgets.QGraphicsScene()
