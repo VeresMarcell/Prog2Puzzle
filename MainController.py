@@ -211,20 +211,20 @@ class Tiles():          # A kép egyenlő négyzetekre való felvágására szol
         if dif == 'Easy':
             for x in range(5):
                 for y in range(5):
-                    self.tiles.append(pix.copy(x*(pix.size().width()/5), y*(pix.size().width()/5)
-                                               , (pix.size().width()/5), (pix.size().width()/5)))
+                    self.tiles.append(pix.copy(x*int((pix.size().width()/5)), y*int((pix.size().width()/5))
+                                               , int((pix.size().width()/5)), int((pix.size().width()/5))))
 
         if dif == 'Normal':
             for x in range(7):
                 for y in range(7):
-                    self.tiles.append(pix.copy(x * (pix.size().width() / 7), y * (pix.size().width() / 7)
-                                               , (pix.size().width() / 7), (pix.size().width() / 7)))
+                    self.tiles.append(pix.copy(x * int((pix.size().width() / 7)), y * int((pix.size().width() / 7))
+                                               , int((pix.size().width() / 7)), int((pix.size().width() / 7))))
 
         if dif == 'Hard':
             for x in range(9):
                 for y in range(9):
-                    self.tiles.append(pix.copy(x * (pix.size().width() / 9), y * (pix.size().width() / 9)
-                                               , (pix.size().width() / 9), (pix.size().width() / 9)))
+                    self.tiles.append(pix.copy(x * int((pix.size().width() / 9)), y * int((pix.size().width() / 9))
+                                               , int((pix.size().width() / 9)), int((pix.size().width() / 9))))
 
     def getTiles(self):
         return self.tiles
